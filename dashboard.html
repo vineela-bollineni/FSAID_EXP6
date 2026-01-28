@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Dashboard - Iris Predictor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<scriptsrc="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
+</script>
+</head>
+<body>
+<div class="dashboard">
+<header>
+<h1>🌸 ML Prediction Dashboard</h1>
+<p>Real-time visualization ofirisflower predictions</p>
+</header>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-icon">🌸</div>
+<div class="stat-content">
+<div class="stat-value" id="totalPredictions">0</div>
+<div class="stat-label">Total Predictions</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">🌸</div>
+<div class="stat-content">
+<div class="stat-value" id="avgConfidence">0%</div>
+<div class="stat-label">Avg Confidence</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">🌸</div>
+<div class="stat-content">
+<div class="stat-value" id="modelsUsed">0</div>
+<div class="stat-label">Models Used</div>
+</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">🌸</div>
+<div class="stat-content">
+<div class="stat-value" id="topPrediction">-</div>
+<div class="stat-label">Most Common</div>
+</div>
+</div>
+</div>
+<div class="prediction-form-container">
+<h2>Make a Prediction</h2>
+<form id="predictionForm">
+<div class="input-row">
+<input type="number" id="sepal_length" placeholder="Sepal Length (cm)"
+step="0.1" required>
+<input type="number" id="sepal_width" placeholder="Sepal Width (cm)"
+step="0.1" required>
+<input type="number" id="petal_length" placeholder="Petal Length (cm)"
+step="0.1" required>
+<input type="number" id="petal_width" placeholder="Petal Width (cm)"
+step="0.1" required>
+</div>
+<div class="input-row">
+<select id="model" required>
+<option value="logistic_regression">Logistic Regression</option>
+<option value="naive_bayes">Naive Bayes</option>
+</select>
+<button type="submit">Predict</button>
+</div>
+</form>
+<div id="predictionResult" style="display:none;"></div>
+</div>
+<div class="charts-grid">
+<div class="chart-container">
+<h3>Predictions by Species</h3>
+<canvasid="predictionsByClass"></canvas>
+</div>
+<div class="chart-container">
+<h3>Predictions by Model</h3>
+<canvasid="predictionsByModel"></canvas>
+</div>
+<div class="chart-container">
+<h3>Confidence Distribution</h3>
+<canvasid="confidenceDistribution"></canvas>
+</div>
+<div class="chart-container">
+<h3>Model Performance Comparison</h3>
+<canvasid="modelComparison"></canvas>
+</div>
+</div>
+<div class="recent-predictions">
+<div class="section-header">
+<h2>Recent Predictions</h2>
+<button id="clearHistory" class="btn-clear">Clear History</button>
+</div>
+<div id="recentPredictionList"></div>
+</div>
+</div>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
